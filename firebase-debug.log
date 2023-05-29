@@ -1,0 +1,19 @@
+[debug] [2023-05-12T00:37:37.811Z] ----------------------------------------------------------------------
+[debug] [2023-05-12T00:37:37.815Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\hojin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js hosting:disable
+[debug] [2023-05-12T00:37:37.816Z] CLI Version:   12.0.0
+[debug] [2023-05-12T00:37:37.816Z] Platform:      win32
+[debug] [2023-05-12T00:37:37.817Z] Node Version:  v18.13.0
+[debug] [2023-05-12T00:37:37.819Z] Time:          Fri May 12 2023 09:37:37 GMT+0900 (대한민국 표준시)
+[debug] [2023-05-12T00:37:37.819Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-05-12T00:37:37.930Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-05-12T00:37:37.931Z] > authorizing via signed-in user (hojin5353@gmail.com)
+[debug] [2023-05-12T00:37:37.931Z] [iam] checking project aruino-51411 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-05-12T00:37:37.935Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/aruino-51411:testIamPermissions [none]
+[debug] [2023-05-12T00:37:37.935Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/aruino-51411:testIamPermissions x-goog-quota-user=projects/aruino-51411
+[debug] [2023-05-12T00:37:37.935Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/aruino-51411:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-05-12T00:37:39.083Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/aruino-51411:testIamPermissions 200
+[debug] [2023-05-12T00:37:39.083Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/aruino-51411:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-05-12T00:37:39.085Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/aruino-51411 [none]
+[debug] [2023-05-12T00:37:39.480Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/aruino-51411 200
+[debug] [2023-05-12T00:37:39.480Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/aruino-51411 {"projectId":"aruino-51411","projectNumber":"102855759972","displayName":"aruino","name":"projects/aruino-51411","resources":{"hostingSite":"aruino-51411","realtimeDatabaseInstance":"aruino-51411-default-rtdb"},"state":"ACTIVE","etag":"1_6e80db9d-c0b0-4a8d-b554-653a0d2e67dd"}
