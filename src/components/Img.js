@@ -1,11 +1,11 @@
 
 const img=[
-    "sunny.png","rain.png","rain.png","snow.png","rain.png","snow.png"
+    "sunny.jpeg","rain.jpeg","rain.jpeg","snow.jpeg","rain.jpeg","snow.jpeg"
 ]
 
 export default function Img({rainType}){
 return(
-<div  style={{position:"absolute",display:"inline" ,zIndex:"-10" ,left:"8rem"}}>
+    <div style={{position:"absolute",display:"inline",left:"8rem" ,zIndex:5}}> 
     <img src={`image/${img[rainType]}`} alt={"img"}/>
     </div>
 );

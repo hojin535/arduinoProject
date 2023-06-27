@@ -264,6 +264,12 @@ export default function VentilationItems({
                   let modiArray = [...Array];
                   modiArray[i].time = time;
                   setArray(modiArray);
+                  let settingTime=time;
+                  if (modiArray[i].state === true) {
+                    update(ref(db, "/"), {
+                      settingTime,
+                    });
+                  }
                   handleClose();
                 }}
                 size="large"

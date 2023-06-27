@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ref, set, update, get, child } from "firebase/database";
 import "./App.css";
+import { Box, Paper } from "@mui/material";
 import { db } from "./firebase";
 import Menu from "./components/Menu";
 import CircularProgress from "@mui/material/CircularProgress";
 import Temp from "./components/Temp";
 import NowAir from "./components/NowAir";
 import Setting from "./components/Setting";
-
+import NowSky from "./NowSky"
 export default function Main() {
   const [alignment, setAlignment] = useState(true);
   const [state, setState] = useState("");
@@ -21,6 +22,7 @@ export default function Main() {
   const [settingTime, setSettingTime] = useState([]);
   const [rainType, setrainType] = useState([]);
   const [keys, setKeys] = useState([]);
+  const [weatherData, setWeatherData] = useState([]);
   const aa = useRef(0);
   // 창문 state값 불러오기
   useEffect(() => {
@@ -32,7 +34,7 @@ export default function Main() {
         setState(snapshot.val().state);
         setrainType(snapshot.val().rain);
         var prekhaiGrade;
-
+        setWeatherData(snapshot.val().forecastData);
         switch (snapshot.val().khaiGrade) {
           case "1":
             prekhaiGrade = "좋음😊";
@@ -71,6 +73,7 @@ export default function Main() {
             tempKo = "눈날림";
             break;
         }
+
         const filteredValues = Object.keys(snapshot.val())
           .filter((key) => key.startsWith("settingTime"))
           .map((key) => snapshot.val()[key])
@@ -95,6 +98,7 @@ export default function Main() {
         setTemp(snapshot.val().temp);
         setWet(snapshot.val().wet);
         setTempKo(tempKo);
+
       });
     }
     getData();
@@ -116,7 +120,8 @@ export default function Main() {
       ) : alignment ? (
         <div>
           <></>
-
+          <Paper elevation={3} sx={{margin:"10px" , paddingBottom:"20px"}}>
+          {/* 날씨 */}
           <Temp
             temp={temp}
             tempKo={tempKo}
@@ -124,7 +129,17 @@ export default function Main() {
             khaiGrade={khaiGrade}
             rainType={rainType}
           />
+          {/* 공기 */}
+
           <NowAir pm25={pm25} pm10={pm10} />
+          </Paper>
+
+          <Paper elevation={3} sx={{margin:"10px"}}>
+          <h2>시간별 예보</h2>
+          <div style={{overflowX:"scroll" ,paddingBottom:"10px"}}> 
+          <NowSky weatherData={weatherData} setWeatherData={setWeatherData}   />
+          </div>
+          </Paper>
           <div
             style={{
               position: "fixed",
@@ -132,11 +147,13 @@ export default function Main() {
               bottom: 0,
             }}
           >
+            {/* 바닥에 메뉴 */}
             <Menu alignment={alignment} setAlignment={setAlignment} />
           </div>
         </div>
       ) : (
         <>
+          {/* 창문 상태 설정화면 */}
           <Setting
             setLoading={setLoading}
             setState={setState}

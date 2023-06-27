@@ -7,6 +7,7 @@ import Snackbar from "@mui/material/Snackbar";
 
 import MuiAlert from "@mui/material/Alert";
 import { MultiSectionDigitalClockSection } from "@mui/x-date-pickers/MultiSectionDigitalClock/MultiSectionDigitalClockSection";
+import { LoadingButton } from "@mui/lab";
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
@@ -18,10 +19,36 @@ export default function State({
   rainType,
   tempKo,
 }) {
+  const [waiting, setWaiting] = React.useState(false);
   const [open, setOpen] = useState(false);
   const serve = ["info", "error"];
   const [serverity, setserverity] = useState();
   const [text, setText] = useState();
+  // 1초마다 받아옴
+  useEffect(() => {
+    const interval = setInterval(() => {
+      async function getData() {
+        await get(ref(db, "/state")).then((snapshot) => {
+          setState(snapshot.val());
+        });
+      }
+      getData();
+    }, 1000);
+
+    return () => clearInterval(interval);
+  //  stop일때 버튼 동작 금지
+  }, []);
+  
+  
+  // useEffect(()=>{
+  //   if(state==="STOP"){
+  //     setWaiting(true);
+  //   }else{
+  //     setWaiting(false);
+  //   }
+  // },[state])
+  //-------------------------------------------
+
   const [imo, setImo] = useState(() => {
     switch (rainType) {
       case "0":
@@ -53,19 +80,33 @@ export default function State({
       rainType === "0"
     ) {
       setserverity(serve[0]);
-      setText(`창문을 열었습니다.`);
+      setWaiting(true);
+      setTimeout(function() {
+        setWaiting(false);
+      }, 5000);
+      setText(`창문을 엽니다.`);
     } else {
       setserverity(serve[1]);
       setText(`미세먼지: ${khaiGrade} \n 하늘: ${tempKo}${imo} `);
+      setWaiting(true);
+      setTimeout(function() {
+        setWaiting(false);
+      }, 5000);
+      setText(`창문을 엽니다.`);
     }
     setOpen(true);
     onOpen();
   };
   const handleClick2 = () => {
     setserverity(serve[0]);
-    setText(`창문을 닫았습니다.`);
+    setWaiting(true);
+    setTimeout(function() {
+      setWaiting(false);
+    }, 5000);
+    setText(`창문을 닫습니다.`);
 
     setOpen(true);
+  
     onClose();
   };
   const handleClose = (event, reason) => {
@@ -103,24 +144,28 @@ export default function State({
             marginRight: "0.5rem",
           }}
         >
-          <Button
+          <LoadingButton
+          loading={waiting}
             onClick={handleClick}
             fullWidth
             variant="contained"
             size="large"
+            loadingIndicator="작동중..."
           >
             열기
-          </Button>
+          </LoadingButton>
         </Box>
         <Box sx={{ width: "48%", display: "inline-block" }}>
-          <Button
+          <LoadingButton
+          loading={waiting}
             onClick={handleClick2}
             fullWidth
             variant="contained"
+            loadingIndicator="작동중..."
             size="large"
           >
             닫기
-          </Button>
+          </LoadingButton>
         </Box>
       </Box>
       <Snackbar

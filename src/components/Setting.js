@@ -29,6 +29,7 @@ export default function Setting({
           paddingTop: "0.5rem",
         }}
       >
+        {/* 창문 */}
         <State
           setLoading={setLoading}
           setState={setState}
@@ -49,6 +50,7 @@ export default function Setting({
           paddingBottom: "1rem",
         }}
       >
+        {/* 개방시간 설정 */}
         <SetTime
           aa={aa}
           Array={settingTime}

@@ -162,6 +162,7 @@ export default function SetTime({ Array, setArray, keys, setKeys, aa }) {
                       if (Array.length >= 1) {
                         id = 2 + keys[keys.length - 1].substring(11);
                       }
+
                       set(ref(db, "/settingTime" + id), {
                         time,
                         state,

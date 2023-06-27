@@ -29,3 +29,38 @@ html {
   margin-top: 18px;
 }
 
+/* ----------------------------- */
+.NowSky {
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+}
+
+.weather_forecast {
+  display: flex;
+  flex-direction: column;
+}
+
+.SKY_container {
+  display: flex;
+  flex-direction: row;
+  width: 100%; 
+}
+
+.T1H_container {
+  display: flex;
+  flex-direction: row;
+  width: 100%; 
+}
+
+.T1H_value{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
