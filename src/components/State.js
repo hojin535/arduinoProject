@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { ref, set, update, get } from "firebase/database";
+import { ref, update, get } from "firebase/database";
 import { db } from "../firebase";
-import { Button, FormControlLabel, FormGroup, Switch } from "@mui/material";
+
 import { Box } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 
 import MuiAlert from "@mui/material/Alert";
-import { MultiSectionDigitalClockSection } from "@mui/x-date-pickers/MultiSectionDigitalClock/MultiSectionDigitalClockSection";
+
 import { LoadingButton } from "@mui/lab";
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -36,20 +36,10 @@ export default function State({
     }, 1000);
 
     return () => clearInterval(interval);
-  //  stop일때 버튼 동작 금지
+    //  stop일때 버튼 동작 금지
   }, []);
-  
-  
-  // useEffect(()=>{
-  //   if(state==="STOP"){
-  //     setWaiting(true);
-  //   }else{
-  //     setWaiting(false);
-  //   }
-  // },[state])
-  //-------------------------------------------
 
-  const [imo, setImo] = useState(() => {
+  const imo = useState(() => {
     switch (rainType) {
       case "0":
         return "☀️";
@@ -81,7 +71,7 @@ export default function State({
     ) {
       setserverity(serve[0]);
       setWaiting(true);
-      setTimeout(function() {
+      setTimeout(function () {
         setWaiting(false);
       }, 5000);
       setText(`창문을 엽니다.`);
@@ -89,7 +79,7 @@ export default function State({
       setserverity(serve[1]);
       setText(`미세먼지: ${khaiGrade} \n 하늘: ${tempKo}${imo} `);
       setWaiting(true);
-      setTimeout(function() {
+      setTimeout(function () {
         setWaiting(false);
       }, 5000);
       setText(`창문을 엽니다.`);
@@ -100,13 +90,13 @@ export default function State({
   const handleClick2 = () => {
     setserverity(serve[0]);
     setWaiting(true);
-    setTimeout(function() {
+    setTimeout(function () {
       setWaiting(false);
     }, 5000);
     setText(`창문을 닫습니다.`);
 
     setOpen(true);
-  
+
     onClose();
   };
   const handleClose = (event, reason) => {
@@ -145,7 +135,7 @@ export default function State({
           }}
         >
           <LoadingButton
-          loading={waiting}
+            loading={waiting}
             onClick={handleClick}
             fullWidth
             variant="contained"
@@ -157,7 +147,7 @@ export default function State({
         </Box>
         <Box sx={{ width: "48%", display: "inline-block" }}>
           <LoadingButton
-          loading={waiting}
+            loading={waiting}
             onClick={handleClick2}
             fullWidth
             variant="contained"

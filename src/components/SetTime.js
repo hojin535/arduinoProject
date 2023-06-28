@@ -3,15 +3,12 @@ import * as React from "react";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import { Box, Button, Modal, TextField, Typography } from "@mui/material";
-import { LongPressDetectEvents, useLongPress } from "use-long-press";
 import { LocalizationProvider, StaticTimePicker } from "@mui/x-date-pickers";
 import { db } from "../firebase";
-import { ref, set, update, get, child } from "firebase/database";
+import { ref, set, update } from "firebase/database";
 import VentilationItems from "./VentilationItems";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import CircularProgress from "@mui/material/CircularProgress";
-import { useEffect } from "react";
 const style = {
   position: "absolute",
   top: "50%",

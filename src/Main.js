@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ref, set, update, get, child } from "firebase/database";
+import { ref, get, child } from "firebase/database";
 import "./App.css";
-import { Box, Paper } from "@mui/material";
+import { Paper } from "@mui/material";
 import { db } from "./firebase";
 import Menu from "./components/Menu";
 import CircularProgress from "@mui/material/CircularProgress";
 import Temp from "./components/Temp";
 import NowAir from "./components/NowAir";
 import Setting from "./components/Setting";
-import NowSky from "./NowSky"
+import NowSky from "./components/NowSky";
 export default function Main() {
   const [alignment, setAlignment] = useState(true);
   const [state, setState] = useState("");
@@ -98,7 +98,6 @@ export default function Main() {
         setTemp(snapshot.val().temp);
         setWet(snapshot.val().wet);
         setTempKo(tempKo);
-
       });
     }
     getData();
@@ -120,25 +119,28 @@ export default function Main() {
       ) : alignment ? (
         <div>
           <></>
-          <Paper elevation={3} sx={{margin:"10px" , paddingBottom:"20px"}}>
-          {/* 날씨 */}
-          <Temp
-            temp={temp}
-            tempKo={tempKo}
-            wet={wet}
-            khaiGrade={khaiGrade}
-            rainType={rainType}
-          />
-          {/* 공기 */}
+          <Paper elevation={3} sx={{ margin: "10px", paddingBottom: "20px" }}>
+            {/* 날씨 */}
+            <Temp
+              temp={temp}
+              tempKo={tempKo}
+              wet={wet}
+              khaiGrade={khaiGrade}
+              rainType={rainType}
+            />
+            {/* 공기 */}
 
-          <NowAir pm25={pm25} pm10={pm10} />
+            <NowAir pm25={pm25} pm10={pm10} />
           </Paper>
 
-          <Paper elevation={3} sx={{margin:"10px"}}>
-          <h2>시간별 예보</h2>
-          <div style={{overflowX:"scroll" ,paddingBottom:"10px"}}> 
-          <NowSky weatherData={weatherData} setWeatherData={setWeatherData}   />
-          </div>
+          <Paper elevation={3} sx={{ margin: "10px" }}>
+            <h2>시간별 예보</h2>
+            <div style={{ overflowX: "scroll", paddingBottom: "10px" }}>
+              <NowSky
+                weatherData={weatherData}
+                setWeatherData={setWeatherData}
+              />
+            </div>
           </Paper>
           <div
             style={{

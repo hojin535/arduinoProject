@@ -1,9 +1,5 @@
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
-import { createTheme } from "@mui/material/styles";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import SettingsIcon from "@mui/icons-material/Settings";
 export default function Menu({ alignment, setAlignment }) {
@@ -12,7 +8,6 @@ export default function Menu({ alignment, setAlignment }) {
   };
   return (
     <div>
-      {" "}
       <BottomNavigation showLabels value={alignment} onChange={handleChange}>
         <BottomNavigationAction
           label="Weather"

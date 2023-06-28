@@ -1,17 +1,13 @@
 import Switch from "@mui/material/Switch";
-
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import useLongPress from "./useLongPress";
 import {
   Box,
   Button,
   Modal,
   Paper,
-  styled,
   TextField,
   Typography,
-  Array,
-  setArray,
 } from "@mui/material";
 
 import { ref, update } from "firebase/database";
@@ -24,7 +20,6 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-import { SettingsInputAntennaTwoTone } from "@mui/icons-material";
 const style = {
   position: "absolute",
   top: "50%",
@@ -264,7 +259,7 @@ export default function VentilationItems({
                   let modiArray = [...Array];
                   modiArray[i].time = time;
                   setArray(modiArray);
-                  let settingTime=time;
+                  let settingTime = time;
                   if (modiArray[i].state === true) {
                     update(ref(db, "/"), {
                       settingTime,

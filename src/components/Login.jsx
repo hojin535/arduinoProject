@@ -4,8 +4,8 @@ import ErrorMessage from "./ErrorMessage";
 import TitleWrap from "./TitleWrap";
 
 const Login = () => {
-  const [ID, adminId] = useState("12345");
-  const [PW, adminPw] = useState("12345");
+  const ID = useState("12345");
+  const PW = useState("12345");
   const [inputID, setId] = useState("");
   const [inputPW, setPw] = useState("");
   const [visible, getVisible] = useState(false);
